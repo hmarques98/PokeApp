@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const networkInstance = axios.create({
   baseURL: '',
-});
+})
 
-networkInstance.interceptors.request.use(request => request);
-networkInstance.interceptors.response.use(response => response);
+networkInstance.interceptors.request.use(request => request)
+networkInstance.interceptors.response.use(response => response)
 
-export default networkInstance;
+export default networkInstance

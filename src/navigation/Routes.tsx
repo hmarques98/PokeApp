@@ -1,18 +1,23 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../domain/Pokemon/HomeScreen';
+import React from 'react'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import HomeScreen from 'domain/Pokemon/HomeScreen'
+import DetailsScreen from 'domain/Pokemon/DetailsScreen'
 
 export type MainStackParamList = {
-  HomeScreen: undefined;
-};
+  HomeScreen: undefined
+  DetailsScreen: undefined
+}
 
-const MainStack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator()
 
 const SCREENS = {
   HomeScreen: {
     component: HomeScreen,
   },
-};
+  DetailsScreen: {
+    component: DetailsScreen,
+  },
+}
 
 const Routes = () => {
   return (
@@ -26,10 +31,10 @@ const Routes = () => {
             name={name as keyof MainStackParamList}
             {...props}
           />
-        );
+        )
       })}
     </MainStack.Navigator>
-  );
-};
+  )
+}
 
-export default Routes;
+export default Routes
