@@ -31,18 +31,19 @@ const HomeScreen = () => {
       ...rest,
     }),
   })
-  const [trigger, result] = useLazyGetPokemonByNameQuery()
+  const [trigger] = useLazyGetPokemonByNameQuery()
 
   useEffect(() => {
     isSuccess &&
+      !filteredData.length &&
       Promise.all(
-        allPokemon.map(({name}) => {
-          trigger(name)
+        allPokemon.map(async ({name}) => {
+          const {data} = await trigger(name)
+          return data
         }),
       ).then(items => {
-        console.log(items)
+        setFilteredData(items)
       })
-    // setFilteredData(preview => [...preview, {name, ...data}])
   }, [])
 
   return (
@@ -54,11 +55,20 @@ const HomeScreen = () => {
         </Text>
         <FlatList
           ListEmptyComponent={() => <Text style={{color: 'red'}}>Loading</Text>}
-          data={allPokemon}
+          data={filteredData}
           columnWrapperStyle={{justifyContent: 'space-between'}}
           numColumns={2}
+          keyExtractor={item => item.id}
           renderItem={({item}) => {
-            return <CardPokemonItem name={item.name} />
+            return (
+              <CardPokemonItem
+                key={item.id}
+                name={item.name}
+                tags={item.abilities.map(({ability}) => ability.name)}
+                number={item.id}
+                image={item.sprites.other.home.front_default}
+              />
+            )
           }}
         />
       </View>
