@@ -1,4 +1,5 @@
 import React from 'react'
+import {Provider} from 'react-redux'
 
 import {
   NavigationContainer,
@@ -7,15 +8,18 @@ import {
 import {useFlipper} from '@react-navigation/devtools'
 
 import Routes from './src/navigation/Routes'
+import {store} from 'services/store'
 
 const App = () => {
   const navigationRef = useNavigationContainerRef()
   useFlipper(navigationRef)
 
   return (
-    <NavigationContainer ref={navigationRef}>
-      <Routes />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer ref={navigationRef}>
+        <Routes />
+      </NavigationContainer>
+    </Provider>
   )
 }
 
