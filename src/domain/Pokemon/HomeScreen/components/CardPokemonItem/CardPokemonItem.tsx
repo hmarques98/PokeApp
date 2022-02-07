@@ -5,7 +5,7 @@ import Tag from 'components/Tag'
 import styles from './styles'
 import {IMAGE_SIZE} from './constants'
 
-type CardPokemonItemProps = {
+export type CardPokemonItemProps = {
   tags: string[]
   name: string
   number: number
@@ -38,6 +38,7 @@ const CardPokemonItem = ({
           </View>
           <View style={{alignSelf: 'flex-end'}}>
             <Image
+              testID="card-pokemon-item-image"
               source={{
                 uri:
                   image ??

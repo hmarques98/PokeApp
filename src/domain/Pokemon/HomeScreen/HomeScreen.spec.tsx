@@ -5,6 +5,6 @@ import HomeScreen from '.'
 describe('HomeScreen', () => {
   it('should render correctly', () => {
     const {queryByText} = render(<HomeScreen />)
-    expect(queryByText('HomeScreen')).toBeTruthy()
+    expect(queryByText('Pokedex')).toBeTruthy()
   })
 })

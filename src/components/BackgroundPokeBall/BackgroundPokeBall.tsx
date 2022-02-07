@@ -1,7 +1,6 @@
 import React, {PropsWithChildren} from 'react'
 import {View, Image} from 'react-native'
 import styles from './styles'
-import {useHeaderHeight} from '@react-navigation/elements'
 
 const BackgroundPokeBall = ({children}: PropsWithChildren<{}>) => {
   return (

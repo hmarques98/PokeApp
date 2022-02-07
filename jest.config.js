@@ -10,4 +10,7 @@ module.exports = {
   clearMocks: true,
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   transform: {},
+  transformIgnorePatterns: [
+    'node_modules/(?!(@react-native|react-native|react-native-vector-icons)/)',
+  ],
 }
