@@ -1,11 +1,15 @@
 import React from 'react'
 import {NavigationContainer} from '@react-navigation/native'
 import {render as rtlRender} from '@testing-library/react-native'
+import {Provider} from 'react-redux'
+import {store} from 'services/store'
 
 function render(ui: any, {...options} = {}) {
   // @ts-ignore
   const Wrapper = ({children}): ComponentType => (
-    <NavigationContainer>{children}</NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>{children}</NavigationContainer>
+    </Provider>
   )
   return rtlRender(ui, {
     wrapper: Wrapper,
