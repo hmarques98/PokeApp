@@ -1,16 +1,19 @@
 import React from 'react'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack'
 import HomeScreen from 'domain/Pokemon/HomeScreen'
 import DetailsScreen from 'domain/Pokemon/DetailsScreen'
 
-export type MainStackParamList = {
-  HomeScreen: undefined
-  DetailsScreen: undefined
+type StackScreenType = {
+  [name: string]: {
+    component(): JSX.Element
+    options?: NativeStackNavigationOptions
+  }
 }
 
-const MainStack = createNativeStackNavigator()
-
-const SCREENS = {
+const SCREENS: StackScreenType = {
   HomeScreen: {
     component: HomeScreen,
   },
@@ -19,19 +22,20 @@ const SCREENS = {
   },
 }
 
+export type MainStackParamList = {
+  HomeScreen: undefined
+  DetailsScreen: undefined
+}
+
+const MainStack = createNativeStackNavigator()
+
 const Routes = () => {
   return (
-    <MainStack.Navigator>
+    <MainStack.Navigator screenOptions={{headerShown: false}}>
       {Object.entries({
         ...SCREENS,
       }).map(([name, props]) => {
-        return (
-          <MainStack.Screen
-            key={name}
-            name={name as keyof MainStackParamList}
-            {...props}
-          />
-        )
+        return <MainStack.Screen key={name} name={name} {...props} />
       })}
     </MainStack.Navigator>
   )

@@ -1,10 +1,10 @@
 import React from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
-import {RectButton} from 'react-native-gesture-handler'
-import styles from './styles'
 import {MainStackParamList} from 'navigation/Routes'
 import {useNavigation} from '@react-navigation/native'
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack'
+import BackgroundPokeBall from 'components/BackgroundPokeBall'
+import {ScrollView} from 'react-native'
+import CardPokemonItem from './components/CardPokemonItem'
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   MainStackParamList,
@@ -15,12 +15,40 @@ const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>()
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>HomeScreen</Text>
-      <TouchableOpacity onPress={() => navigation.replace('DetailsScreen')}>
-        <Text style={styles.text}>Detalhes</Text>
-      </TouchableOpacity>
-    </View>
+    <BackgroundPokeBall>
+      <ScrollView
+        contentContainerStyle={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}
+      >
+        <CardPokemonItem
+          name="bulbassour"
+          number={13}
+          tags={['jsja']}
+          onPressItem={() => {}}
+        />
+        <CardPokemonItem
+          name="bulbassour"
+          number={13}
+          tags={['jsja']}
+          onPressItem={() => {}}
+        />
+        <CardPokemonItem
+          name="bulbassour"
+          number={13}
+          tags={['jsja']}
+          onPressItem={() => {}}
+        />
+        <CardPokemonItem
+          name="bulbassour"
+          number={13}
+          tags={['jsja']}
+          onPressItem={() => {}}
+        />
+      </ScrollView>
+    </BackgroundPokeBall>
   )
 }
 export default HomeScreen
