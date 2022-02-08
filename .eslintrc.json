@@ -35,12 +35,14 @@
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
     "consistent-return": "off",
+    "no-use-before-define": "off",
 
     // TypeScript
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-expressions": "error",
     "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-use-before-define": ["error"],
 
     // React
     "react/jsx-props-no-spreading": "off",
@@ -51,7 +53,13 @@
       }
     ],
     "react/prop-types": "off",
-
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["arrow-function"],
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     // React Hooks
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

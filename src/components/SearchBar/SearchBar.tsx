@@ -4,7 +4,7 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 import styles from './styles'
 
-interface SearchBarProps extends TextInputProps {}
+type SearchBarProps = TextInputProps
 
 const SearchBar = ({...textInputProps}: SearchBarProps) => {
   const [textInputIsFocused, setTextInputIsFocused] = useState(false)

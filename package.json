@@ -10,8 +10,7 @@
     "test:clearCache": "jest --clearCache",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll",
-    "lint": "yarn lint:ts && yarn lint:style",
-    "lint:ts": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:style": "eslint \"**/*.{js,ts,jsx,tsx}\"",
     "lint:fix": "eslint \"**/*.{js,ts,jsx,tsx}\" --quiet --fix"
   },
