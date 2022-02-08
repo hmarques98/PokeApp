@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import {View, Text, Image, TouchableNativeFeedback} from 'react-native'
 
 import Tag from 'components/Tag'
@@ -33,7 +33,7 @@ const CardPokemonItem = ({
         <View style={styles.containerBottomRow}>
           <View style={styles.containerTags}>
             {tags?.map(tag => (
-              <Tag label={tag} />
+              <Tag label={tag} key={tag} />
             ))}
           </View>
           <View style={{alignSelf: 'flex-end'}}>
@@ -53,4 +53,4 @@ const CardPokemonItem = ({
     </TouchableNativeFeedback>
   )
 }
-export default CardPokemonItem
+export default memo(CardPokemonItem)
