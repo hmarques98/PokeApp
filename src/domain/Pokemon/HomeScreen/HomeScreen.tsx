@@ -1,14 +1,15 @@
 import React, {useCallback, useState} from 'react'
-import {MainStackParamList} from 'navigation/Routes'
-import type {NativeStackNavigationProp} from '@react-navigation/native-stack'
 import {FlatList, Text, View} from 'react-native'
+import {useNavigation} from '@react-navigation/native'
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack'
 
+import {MainStackParamList} from 'navigation/Routes'
 import BackgroundPokeBall from 'components/BackgroundPokeBall'
 import SearchBar from 'components/SearchBar'
-import {useNavigation} from '@react-navigation/native'
-import CardPokemonItem from './components/CardPokemonItem'
 
+import CardPokemonItem from './components/CardPokemonItem'
 import {useGetAllPokemon} from './hooks/useGeAllPokemon'
+import styles from './styles'
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   MainStackParamList,
@@ -20,7 +21,7 @@ const HomeScreen = () => {
   const {data} = useGetAllPokemon(value)
 
   const MemoizedLoadingComponent = useCallback(
-    () => <Text style={{color: 'red'}}>Loading</Text>,
+    () => <Text style={styles.loadingText}>Loading</Text>,
     [],
   )
 
@@ -28,11 +29,9 @@ const HomeScreen = () => {
 
   return (
     <BackgroundPokeBall>
-      <View style={{padding: 12, flex: 1}}>
+      <View style={styles.container}>
         <SearchBar value={value} onChangeText={setValue} />
-        <Text style={{color: 'black', fontSize: 28, fontWeight: '800'}}>
-          Pokedex {data?.length}
-        </Text>
+        <Text style={styles.headerText}>Pokedex {data?.length}</Text>
         <FlatList
           ListEmptyComponent={MemoizedLoadingComponent}
           data={data}

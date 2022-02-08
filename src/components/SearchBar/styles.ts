@@ -1,3 +1,4 @@
+import {AppColors} from 'config/colors'
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     alignItems: 'flex-end',
     flex: 0.7,
-    color: 'black',
+    color: AppColors.black,
   },
 })
 export default styles

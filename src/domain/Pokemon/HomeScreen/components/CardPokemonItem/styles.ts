@@ -1,9 +1,10 @@
+import {AppColors} from 'config/colors'
 import {StyleSheet} from 'react-native'
-import {width} from './constants'
+import {width} from '../../config/constants'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'green',
+    backgroundColor: AppColors.lightGreen,
     width: width * 0.45,
     height: 160,
     borderRadius: 16,

@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableNativeFeedback} from 'react-native'
 
 import Tag from 'components/Tag'
 import styles from './styles'
-import {IMAGE_SIZE} from './constants'
+import {IMAGE_SIZE} from '../../config/constants'
 
 export type CardPokemonItemProps = {
   tags: string[]

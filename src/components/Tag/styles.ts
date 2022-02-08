@@ -1,8 +1,9 @@
+import {AppColors} from 'config/colors'
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'gray',
+    backgroundColor: AppColors.gray,
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 4,

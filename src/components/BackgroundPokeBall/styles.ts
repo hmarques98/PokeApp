@@ -1,3 +1,4 @@
+import {AppColors} from 'config/colors'
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
@@ -10,6 +11,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -70,
   },
-  image: {height: 200, width: 200, tintColor: 'gray', opacity: 0.2},
+  image: {height: 200, width: 200, tintColor: AppColors.semiGray, opacity: 0.2},
 })
 export default styles

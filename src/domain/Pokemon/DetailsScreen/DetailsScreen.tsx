@@ -1,10 +1,13 @@
 import {RouteProp, useRoute} from '@react-navigation/native'
+import BackgroundPokeBall from 'components/BackgroundPokeBall'
 import {MainStackParamList} from 'navigation/Routes'
 import React from 'react'
 import {Text, Image} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useAppSelector} from 'services/store/hooks'
 import styles from './styles'
+
+const SIZE_IMAGE = 350
 
 const DetailsScreen = () => {
   const {
@@ -16,16 +19,18 @@ const DetailsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>
-        {pokeId} {poke?.name}
-      </Text>
-      <Image
-        source={{
-          uri: poke?.sprites.other.home.front_default,
-          width: 350,
-          height: 350,
-        }}
-      />
+      <BackgroundPokeBall>
+        <Text style={styles.text}>
+          {pokeId} {poke?.name}
+        </Text>
+        <Image
+          source={{
+            uri: poke?.sprites.other.home.front_default,
+            width: SIZE_IMAGE,
+            height: SIZE_IMAGE,
+          }}
+        />
+      </BackgroundPokeBall>
     </SafeAreaView>
   )
 }

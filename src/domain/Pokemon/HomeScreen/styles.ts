@@ -1,15 +1,9 @@
+import {AppColors} from 'config/colors'
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    position: 'relative',
-  },
-  text: {
-    fontSize: 18,
-    color: 'red',
-    // fontWeight: 'bold',
-  },
+  container: {padding: 12, flex: 1},
+  headerText: {color: AppColors.black, fontSize: 28, fontWeight: '800'},
+  loadingText: {color: AppColors.darkGray},
 })
 export default styles
