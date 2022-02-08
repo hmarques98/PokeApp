@@ -24,7 +24,9 @@ const SCREENS: StackScreenType = {
 
 export type MainStackParamList = {
   HomeScreen: undefined
-  DetailsScreen: undefined
+  DetailsScreen: {
+    id: number
+  }
 }
 
 const MainStack = createNativeStackNavigator()

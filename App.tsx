@@ -8,6 +8,7 @@ import {
 import {useFlipper} from '@react-navigation/devtools'
 
 import {store} from 'services/store'
+import {SafeAreaProvider} from 'react-native-safe-area-context'
 import Routes from './src/navigation/Routes'
 
 const App = () => {
@@ -16,9 +17,11 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer ref={navigationRef}>
-        <Routes />
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer ref={navigationRef}>
+          <Routes />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   )
 }

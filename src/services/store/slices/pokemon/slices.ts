@@ -1,19 +1,25 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {IPokemon} from 'services/pokeApi/interfaces/Pokemon'
 
 interface PokemonState {
-  value: number
+  allPokemon: IPokemon[]
 }
 
 const initialState: PokemonState = {
-  value: 0,
+  allPokemon: [],
 }
 
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
-  reducers: {},
+  reducers: {
+    addAllPokemon: (state, {payload}: PayloadAction<IPokemon[]>) => {
+      state.allPokemon = payload
+      return state
+    },
+  },
 })
 
-export const {} = pokemonSlice.actions
+export const {addAllPokemon} = pokemonSlice.actions
 
 export default pokemonSlice.reducer

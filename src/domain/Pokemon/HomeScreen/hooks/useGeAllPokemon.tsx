@@ -4,12 +4,15 @@ import {
   useLazyGetAllPokemonQuery,
   useLazyGetPokemonByNameQuery,
 } from 'services/pokeApi/pokeApi'
+import {useAppDispatch} from 'services/store/hooks'
+import {addAllPokemon} from 'services/store/slices/pokemon/slices'
 
 export const useGetAllPokemon = (text?: string) => {
   const [data, setData] = useState<IPokemon[]>()
 
   const [trigger] = useLazyGetAllPokemonQuery()
   const [triggerByName] = useLazyGetPokemonByNameQuery()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     ;(async () => {
@@ -23,15 +26,16 @@ export const useGetAllPokemon = (text?: string) => {
             }
           }),
         ).then(result => {
-          const nonUndefined = result.filter(
+          const nonUndefinedResult = result.filter(
             (value): value is IPokemon => value !== undefined,
           )
 
-          setData(nonUndefined)
+          setData(nonUndefinedResult)
+          dispatch(addAllPokemon(nonUndefinedResult))
         })
       }
     })()
-  }, [trigger, triggerByName])
+  }, [dispatch, trigger, triggerByName])
 
   const filteredData = useMemo(
     () =>

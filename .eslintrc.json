@@ -37,6 +37,7 @@
     "no-undef": "off",
     "consistent-return": "off",
     "no-use-before-define": "off",
+    "no-param-reassign": "off",
     "import/no-extraneous-dependencies": "off",
 
     // TypeScript
