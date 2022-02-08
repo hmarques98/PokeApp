@@ -12,9 +12,8 @@ const props: CardPokemonItemProps = {
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/23.png',
 }
 
-const makeSut = (newProps?: Partial<CardPokemonItemProps>) => {
-  return render(<CardPokemonItem {...props} {...newProps} />)
-}
+const makeSut = (newProps?: Partial<CardPokemonItemProps>) =>
+  render(<CardPokemonItem {...props} {...newProps} />)
 describe('CardPokemonItem', () => {
   test('SHOULD render correctly', () => {
     makeSut()

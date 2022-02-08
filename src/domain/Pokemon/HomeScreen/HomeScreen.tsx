@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import {MainStackParamList} from 'navigation/Routes'
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack'
-import BackgroundPokeBall from 'components/BackgroundPokeBall'
 import {FlatList, Text, View} from 'react-native'
-import CardPokemonItem from './components/CardPokemonItem'
+
+import BackgroundPokeBall from 'components/BackgroundPokeBall'
 import SearchBar from 'components/SearchBar'
+import CardPokemonItem from './components/CardPokemonItem'
 
 import {useGetAllPokemon} from './hooks/useGeAllPokemon'
 
@@ -30,18 +31,16 @@ const HomeScreen = () => {
           columnWrapperStyle={{justifyContent: 'space-between'}}
           numColumns={2}
           keyExtractor={item => item.name}
-          renderItem={({item}) => {
-            return (
-              <CardPokemonItem
-                key={item.name}
-                name={item.name}
-                tags={item.abilities.map(({ability}) => ability.name)}
-                number={item.id}
-                image={item.sprites.other.home.front_default}
-                onPressItem={() => console.log(item.name)}
-              />
-            )
-          }}
+          renderItem={({item}) => (
+            <CardPokemonItem
+              key={item.name}
+              name={item.name}
+              tags={item.abilities.map(({ability}) => ability.name)}
+              number={item.id}
+              image={item.sprites.other.home.front_default}
+              onPressItem={() => console.log(item.name)}
+            />
+          )}
         />
       </View>
     </BackgroundPokeBall>

@@ -1,8 +1,7 @@
 import React from 'react'
 import {render} from 'test/test.utils'
-import SearchBar from '.'
-
 import {fireEvent} from '@testing-library/react-native'
+import SearchBar from '.'
 
 describe('BackgroundPokeBall', () => {
   test('should render correctly', () => {

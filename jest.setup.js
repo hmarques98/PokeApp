@@ -6,6 +6,7 @@ import 'react-native-gesture-handler/jestSetup'
 // Setting global.Promise takes care of act warnings that may occur due to 2 waitFor,
 // as suggested https://github.com/callstack/react-native-testing-library/issues/379
 import Promise from 'promise-polyfill'
+
 global.Promise = Promise
 
 jest.mock('react-native-gesture-handler', () => {
@@ -64,7 +65,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
-//establish api mocking before all tests
+// establish api mocking before all tests
 beforeAll(() => server.listen())
 
 beforeEach(() => {
@@ -74,12 +75,12 @@ beforeEach(() => {
   })
 })
 
-//clean up after the tests are finished
+// clean up after the tests are finished
 afterAll(() => server.close())
 
 afterEach(() => {
   global.fetch.mockRestore()
-  //reset any requests handlers that we may add during the tests,
-  //so they don't affect other tests.
+  // reset any requests handlers that we may add during the tests,
+  // so they don't affect other tests.
   server.resetHandlers()
 })

@@ -7,8 +7,8 @@ import {
 } from '@react-navigation/native'
 import {useFlipper} from '@react-navigation/devtools'
 
-import Routes from './src/navigation/Routes'
 import {store} from 'services/store'
+import Routes from './src/navigation/Routes'
 
 const App = () => {
   const navigationRef = useNavigationContainerRef()

@@ -29,16 +29,14 @@ export type MainStackParamList = {
 
 const MainStack = createNativeStackNavigator()
 
-const Routes = () => {
-  return (
-    <MainStack.Navigator screenOptions={{headerShown: false}}>
-      {Object.entries({
-        ...SCREENS,
-      }).map(([name, props]) => {
-        return <MainStack.Screen key={name} name={name} {...props} />
-      })}
-    </MainStack.Navigator>
-  )
-}
+const Routes = () => (
+  <MainStack.Navigator screenOptions={{headerShown: false}}>
+    {Object.entries({
+      ...SCREENS,
+    }).map(([name, props]) => (
+      <MainStack.Screen key={name} name={name} {...props} />
+    ))}
+  </MainStack.Navigator>
+)
 
 export default Routes

@@ -10,6 +10,4 @@ enum PokemonTypes {
   fire = 'fire',
 }
 
-export const colorGeneratorPokemon = (val: PokemonTypes) => {
-  return POKEMON_TYPES[val]
-}
+export const colorGeneratorPokemon = (val: PokemonTypes) => POKEMON_TYPES[val]

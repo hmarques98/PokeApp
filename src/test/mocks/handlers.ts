@@ -1,8 +1,8 @@
 import {rest} from 'msw'
 
 export const handlers = [
-  rest.get('https://pokeapi.co/api/v2/pokemon/1/', (req, res, ctx) => {
-    return res(
+  rest.get('https://pokeapi.co/api/v2/pokemon/1/', (req, res, ctx) =>
+    res(
       ctx.json({
         abilities: [
           {
@@ -23,6 +23,6 @@ export const handlers = [
           },
         ],
       }),
-    )
-  }),
+    ),
+  ),
 ]
