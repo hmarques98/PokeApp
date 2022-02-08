@@ -11,8 +11,10 @@ const pokeApi = createApi({
     getPokemonByNumber: builder.query<number, number>({
       query: number => `pokemon/${number}`,
     }),
-    getAllPokemon: builder.query<{results: IAllPokemon[]}, void>({
+    getAllPokemon: builder.query<IAllPokemon[], void>({
       query: () => 'pokemon',
+      transformResponse: (rawResult: {results: IAllPokemon[]}) =>
+        rawResult.results,
     }),
   }),
 })

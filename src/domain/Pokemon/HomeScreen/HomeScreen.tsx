@@ -15,14 +15,14 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 
 const HomeScreen = () => {
   const [value, setValue] = useState('')
-  const {data} = useGetAllPokemon()
+  const {data} = useGetAllPokemon(value)
 
   return (
     <BackgroundPokeBall>
       <View style={{padding: 12, flex: 1}}>
         <SearchBar value={value} onChangeText={setValue} />
         <Text style={{color: 'black', fontSize: 28, fontWeight: '800'}}>
-          Pokedex {data.length}
+          Pokedex {data?.length}
         </Text>
         <FlatList
           ListEmptyComponent={() => <Text style={{color: 'red'}}>Loading</Text>}
