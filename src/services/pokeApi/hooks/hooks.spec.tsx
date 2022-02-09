@@ -1,29 +1,29 @@
-import React from 'react'
 import {act, renderHook} from '@testing-library/react-hooks'
-import {Provider} from 'react-redux'
-import {server} from 'test/mocks/server'
 
-import {setupApiStore} from 'test/setupApiStore'
 import {customRenderHook} from 'test/test.utils'
+import {server} from 'test/mocks/server'
 import {useGetPokemonByNameQuery, useLazyGetPokemonByNameQuery} from './index'
 import pokeApi from '../pokeApi'
 
 const updateTimeout = 5000
 
-describe('useListVariantsQuery', () => {
+beforeEach(() => {
+  server.listen()
+  server.printHandlers()
+})
+
+describe('useGetPokemonByNameQuery', () => {
   it('Success', async () => {
-    const {result} = customRenderHook(
+    const {result, waitForNextUpdate} = customRenderHook(
       () => useGetPokemonByNameQuery('bulbasaur'),
       pokeApi,
     )
     const initialResponse = result.current
     expect(initialResponse.data).toBeUndefined()
     expect(initialResponse.isLoading).toBe(true)
-    // await waitForNextUpdate({timeout: updateTimeout})
+    await waitForNextUpdate({timeout: updateTimeout})
 
-    // const nextResponse = result.current
-    // expect(nextResponse.data).not.toBeUndefined()
-    // expect(nextResponse.isLoading).toBe(false)
+    expect(initialResponse.isLoading).toBe(false)
     // expect(nextResponse.isSuccess).toBe(true)
   })
 

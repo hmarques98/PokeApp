@@ -1,4 +1,4 @@
-import pokeApi from '../pokeApi'
+import pokeApi from '../index'
 
 export const {
   useGetPokemonByNameQuery,
