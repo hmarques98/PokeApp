@@ -3,26 +3,30 @@ import {IPokemon} from 'services/pokeApi/interfaces/Pokemon'
 import {
   useLazyGetAllPokemonQuery,
   useLazyGetPokemonByNameQuery,
-} from 'services/pokeApi/pokeApi'
+} from 'services/pokeApi/hooks'
 import {useAppDispatch} from 'services/store/hooks'
 import {addAllPokemon} from 'services/store/slices/pokemon/slices'
 
-export const useGetAllPokemon = (text?: string) => {
+const useGetAllPokemon = (text?: string) => {
   const [data, setData] = useState<IPokemon[]>()
 
   const [trigger] = useLazyGetAllPokemonQuery()
   const [triggerByName] = useLazyGetPokemonByNameQuery()
   const dispatch = useAppDispatch()
 
+  console.log({data})
+
   useEffect(() => {
     ;(async () => {
       const {data: allPokemon} = await trigger()
+      console.log({allPokemon})
+
       if (allPokemon) {
         Promise.all(
           allPokemon.map(async ({name}) => {
-            const {data: pokemonByname} = await triggerByName(name)
-            if (pokemonByname) {
-              return pokemonByname
+            const {data: pokemonByName} = await triggerByName(name)
+            if (pokemonByName) {
+              return pokemonByName
             }
           }),
         ).then(result => {
@@ -49,3 +53,5 @@ export const useGetAllPokemon = (text?: string) => {
     data: filteredData,
   }
 }
+
+export default useGetAllPokemon

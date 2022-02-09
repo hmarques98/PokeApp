@@ -7,8 +7,9 @@ import {MainStackParamList} from 'navigation/Routes'
 import BackgroundPokeBall from 'components/BackgroundPokeBall'
 import SearchBar from 'components/SearchBar'
 
+import useGetAllPokemon from '../hooks/useGetAllPokemon'
+
 import CardPokemonItem from './components/CardPokemonItem'
-import {useGetAllPokemon} from './hooks/useGeAllPokemon'
 import styles from './styles'
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
@@ -25,14 +26,22 @@ const HomeScreen = () => {
     [],
   )
 
+  const MemoizedHeaderComponent = useCallback(
+    () => (
+      <>
+        <SearchBar value={value} onChangeText={setValue} />
+        <Text style={styles.headerText}>Pokedex {data?.length}</Text>
+      </>
+    ),
+    [data?.length, value],
+  )
   const navigation = useNavigation<HomeScreenNavigationProp>()
 
   return (
     <BackgroundPokeBall>
       <View style={styles.container}>
-        <SearchBar value={value} onChangeText={setValue} />
-        <Text style={styles.headerText}>Pokedex {data?.length}</Text>
         <FlatList
+          ListHeaderComponent={MemoizedHeaderComponent}
           ListEmptyComponent={MemoizedLoadingComponent}
           data={data}
           columnWrapperStyle={{justifyContent: 'space-between'}}

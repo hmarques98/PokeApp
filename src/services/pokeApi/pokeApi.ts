@@ -20,11 +20,4 @@ const pokeApi = createApi({
   }),
 })
 
-export const {
-  useGetPokemonByNameQuery,
-  useLazyGetPokemonByNameQuery,
-  useGetAllPokemonQuery,
-  useGetPokemonByNumberQuery,
-  useLazyGetAllPokemonQuery,
-} = pokeApi
 export default pokeApi

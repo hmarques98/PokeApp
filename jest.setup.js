@@ -1,13 +1,20 @@
 /* eslint-disable no-undef */
 import '@testing-library/jest-native/extend-expect'
 import {jest} from '@jest/globals'
+import AbortController from 'abort-controller'
+import {fetch, Headers, Request, Response} from 'cross-fetch'
+import Promise from 'promise-polyfill'
 import {server} from './src/test/mocks/server'
 import 'react-native-gesture-handler/jestSetup'
 // Setting global.Promise takes care of act warnings that may occur due to 2 waitFor,
 // as suggested https://github.com/callstack/react-native-testing-library/issues/379
-import Promise from 'promise-polyfill'
 
 global.Promise = Promise
+global.fetch = fetch
+global.Headers = Headers
+global.Request = Request
+global.Response = Response
+global.AbortController = AbortController
 
 jest.mock('react-native-gesture-handler', () => {
   const View = require('react-native/Libraries/Components/View/View')
@@ -66,7 +73,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
 // establish api mocking before all tests
-beforeAll(() => server.listen())
+beforeAll(() => server.listen({onUnhandledRequest: 'error'}))
 
 beforeEach(() => {
   global.fetch = jest.fn((...args) => {

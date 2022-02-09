@@ -1,7 +1,18 @@
 import {rest} from 'msw'
 
 export const handlers = [
-  rest.get('https://pokeapi.co/api/v2/pokemon/1/', (req, res, ctx) =>
+  rest.get('https://pokeapi.co/api/v2/pokemon/', (req, res, ctx) =>
+    res(
+      ctx.json([
+        {
+          name: 'bulbasaur',
+          url: 'https://pokeapi.co/api/v2/pokemon/1/',
+        },
+      ]),
+    ),
+  ),
+
+  rest.get('https://pokeapi.co/api/v2/pokemon/bulbasaur', (req, res, ctx) =>
     res(
       ctx.json({
         abilities: [
@@ -22,6 +33,16 @@ export const handlers = [
             slot: 3,
           },
         ],
+        id: 1,
+        name: 'bulbasaur',
+        sprites: {
+          other: {
+            dream_world: {
+              front_default:
+                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+            },
+          },
+        },
       }),
     ),
   ),
