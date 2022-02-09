@@ -1,8 +1,9 @@
 import {rest} from 'msw'
 
 export const handlers = [
-  rest.get('https://pokeapi.co/api/v2/pokemon/', (req, res, ctx) =>
+  rest.get('api/v2/pokemon', (req, res, ctx) =>
     res(
+      ctx.status(200),
       ctx.json([
         {
           name: 'bulbasaur',
@@ -12,7 +13,7 @@ export const handlers = [
     ),
   ),
 
-  rest.get('https://pokeapi.co/api/v2/pokemon/bulbasaur', (req, res, ctx) =>
+  rest.get('api/v2/pokemon/bulbasaur', (req, res, ctx) =>
     res(
       ctx.json({
         abilities: [

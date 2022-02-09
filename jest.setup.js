@@ -1,37 +1,12 @@
-/* eslint-disable no-undef */
 import '@testing-library/jest-native/extend-expect'
 import {jest} from '@jest/globals'
 import AbortController from 'abort-controller'
-import {fetch, Headers, Request, Response} from 'cross-fetch'
+import fetch, {Headers, Request, Response} from 'node-fetch'
+
 import {server} from './src/test/mocks/server'
 import 'react-native-gesture-handler/jestSetup'
-// Setting global.Promise takes care of act warnings that may occur due to 2 waitFor,
-// as suggested https://github.com/callstack/react-native-testing-library/issues/379
 
-global.fetch = require('node-fetch')
-
-beforeEach(() => {
-  global.fetch = jest.fn((...args) => {
-    console.warn('global.fetch needs to be mocked in tests', ...args)
-    throw new Error('global.fetch needs to be mocked in tests')
-  })
-  jest.useFakeTimers('legacy')
-})
-
-beforeAll(() => {
-  // Enable the mocking in tests.
-  server.listen({onUnhandledRequest: 'error'})
-})
-
-afterEach(() => {
-  // Reset any runtime handlers tests may use.
-  server.resetHandlers()
-})
-
-afterAll(() => {
-  // Clean up once the tests are done.
-  server.close()
-})
+jest.useFakeTimers()
 
 jest.mock('react-native-gesture-handler', () => {
   const View = require('react-native/Libraries/Components/View/View')
@@ -88,3 +63,17 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
+
+global.fetch = fetch
+global.Headers = Headers
+global.Request = Request
+global.Response = Response
+global.AbortController = AbortController
+
+// Establish API mocking before all tests.
+beforeAll(() => server.listen())
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers())
+// Clean up after the tests are finished.
+afterAll(() => server.close())
