@@ -19,7 +19,7 @@ function render(ui: any, {...options} = {}) {
 }
 
 const customRenderHook = <T,>(
-  hook: (props: never) => T,
+  hook: (props?: never) => T,
   apiReduxStore?: any,
 ) => {
   const wrapper = ({children}: React.PropsWithChildren<never>) => {

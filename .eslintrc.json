@@ -1,6 +1,8 @@
 {
   "env": {
-    "es6": true
+    "es6": true,
+    "jest": true,
+    "node": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -33,10 +35,10 @@
     "import/prefer-default-export": "off",
     "class-methods-use-this": "off",
     "no-unused-expressions": "off",
-    "no-unused-vars": "off",
-    "no-undef": "off",
-    "consistent-return": "off",
+    // "no-unused-vars": "off",
+    // "no-undef": "off",
     "no-use-before-define": "off",
+    "consistent-return": "off",
     "no-param-reassign": "off",
     "import/no-extraneous-dependencies": "off",
 

@@ -3,8 +3,9 @@ import {jest} from '@jest/globals'
 import AbortController from 'abort-controller'
 import fetch, {Headers, Request, Response} from 'node-fetch'
 
-import {server} from './src/test/mocks/server'
 import 'react-native-gesture-handler/jestSetup'
+
+import {server} from './src/test/mocks/server'
 
 jest.useFakeTimers()
 
@@ -74,6 +75,8 @@ global.AbortController = AbortController
 beforeAll(() => server.listen())
 // Reset any request handlers that we may add during the tests,
 // so they don't affect other tests.
-afterEach(() => server.resetHandlers())
+afterEach(() => {
+  server.resetHandlers()
+})
 // Clean up after the tests are finished.
 afterAll(() => server.close())

@@ -4,7 +4,7 @@ import {IAllPokemon, IPokemon} from './interfaces/Pokemon'
 
 const pokeApi = createApi({
   reducerPath: 'pokemonApi',
-  baseQuery: fetchBaseQuery({baseUrl: URLS.baseURL_PokeAPI}),
+  baseQuery: fetchBaseQuery({baseUrl: URLS.POKE_API}),
   endpoints: builder => ({
     getPokemonByName: builder.query<IPokemon, string>({
       query: name => `pokemon/${name}`,

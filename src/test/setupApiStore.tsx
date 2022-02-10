@@ -9,9 +9,8 @@ import {
   Store,
 } from '@reduxjs/toolkit'
 import {Provider} from 'react-redux'
-// import {store} from 'services/store'
 import {cleanup} from '@testing-library/react-native'
-import {setupListeners} from '@reduxjs/toolkit/dist/query'
+// import {setupListeners} from '@reduxjs/toolkit/query'
 
 export function withProvider(store: Store<any>) {
   return function Wrapper({children}: any) {
@@ -30,7 +29,10 @@ export function setupApiStore<
 >(api: A, extraReducers?: R): {api: any; store: EnhancedStore} {
   const getStore = () =>
     configureStore({
-      reducer: combineReducers({[api.reducerPath]: api.reducer}),
+      reducer: combineReducers({
+        [api.reducerPath]: api.reducer,
+        ...extraReducers,
+      }),
       middleware: gdm =>
         gdm({serializableCheck: false, immutableCheck: false}).concat(
           api.middleware,
@@ -55,19 +57,20 @@ export function setupApiStore<
     store: initialStore,
     wrapper: withProvider(initialStore),
   }
-  let cleanupListeners: () => void
+  // let cleanupListeners: () => void
 
   beforeEach(() => {
     const store = getStore() as StoreType
     refObj.store = store
     refObj.wrapper = withProvider(store)
 
-    cleanupListeners = setupListeners(store.dispatch)
+    // cleanupListeners = setupListeners(store.dispatch)
+    // setupListeners(store.dispatch)
   })
   afterEach(() => {
     cleanup()
 
-    cleanupListeners()
+    // cleanupListeners()
 
     refObj.store.dispatch(api.util.resetApiState())
   })

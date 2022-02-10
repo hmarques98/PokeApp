@@ -14,22 +14,22 @@ const useGetAllPokemon = (text?: string) => {
   const [triggerByName] = useLazyGetPokemonByNameQuery()
   const dispatch = useAppDispatch()
 
-  console.log({data})
-
   useEffect(() => {
     ;(async () => {
       const {data: allPokemon} = await trigger()
-      console.log({allPokemon})
 
       if (allPokemon) {
         Promise.all(
           allPokemon.map(async ({name}) => {
             const {data: pokemonByName} = await triggerByName(name)
+
             if (pokemonByName) {
               return pokemonByName
             }
           }),
         ).then(result => {
+          console.log({result})
+
           const nonUndefinedResult = result.filter(
             (value): value is IPokemon => value !== undefined,
           )

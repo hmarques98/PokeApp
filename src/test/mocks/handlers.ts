@@ -1,50 +1,30 @@
+import URLS from 'config/urls'
 import {rest} from 'msw'
+import resolvers, {internalServerError} from './resolvers'
 
-export const handlers = [
-  rest.get('api/v2/pokemon', (req, res, ctx) =>
-    res(
-      ctx.status(200),
-      ctx.json([
-        {
-          name: 'bulbasaur',
-          url: 'https://pokeapi.co/api/v2/pokemon/1/',
-        },
-      ]),
-    ),
-  ),
+export const pokeApiUrl = (query: string) => `${URLS.POKE_API}${query}`
 
-  rest.get('api/v2/pokemon/bulbasaur', (req, res, ctx) =>
-    res(
-      ctx.json({
-        abilities: [
-          {
-            ability: {
-              name: 'overgrow',
-              url: 'https://pokeapi.co/api/v2/ability/65/',
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: 'chlorophyll',
-              url: 'https://pokeapi.co/api/v2/ability/34/',
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-        id: 1,
-        name: 'bulbasaur',
-        sprites: {
-          other: {
-            dream_world: {
-              front_default:
-                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
-            },
-          },
-        },
-      }),
+export const handlers = {
+  allPokemon: {
+    success: rest.get(pokeApiUrl('pokemon'), resolvers.allPokemon.success),
+    internalServerError: rest.get(pokeApiUrl('pokemon'), internalServerError),
+  },
+  pokemonByName: {
+    success: rest.get(
+      pokeApiUrl('pokemon/bulbasaur'),
+      resolvers.pokemonByName.success,
     ),
-  ),
+    internalServerError: rest.get(
+      pokeApiUrl('pokemon/bulbasaur'),
+      internalServerError,
+    ),
+  },
+}
+
+export const handlersList = [
+  handlers.allPokemon.success,
+  handlers.pokemonByName.success,
+
+  handlers.allPokemon.internalServerError,
+  handlers.pokemonByName.internalServerError,
 ]

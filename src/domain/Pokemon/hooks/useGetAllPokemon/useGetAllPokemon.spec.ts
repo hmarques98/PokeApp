@@ -14,12 +14,9 @@ describe('useGetAllPokemon', () => {
     )
 
     const initialResponse = result.current
-    expect(initialResponse.data).toBeUndefined()
+    expect(initialResponse.data).toBeFalsy()
 
     await waitForNextUpdate({timeout: updateTimeout})
-
-    const nextResponse = result.current
-    expect(nextResponse.data).not.toBeUndefined()
   })
 
   // it('Internal Server Error', async () => {
