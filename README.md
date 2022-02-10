@@ -22,14 +22,14 @@ There are scripts in ```package.json``` to build the project in command line, ho
 
 <br/>
 
-![PokeApp Home](./assets/images/pokeApp_home.png.png)
+<div>
+    <img src="./assets/images/pokeApp_home.png" width="400px" />
+    <img src="./assets/images/pokeApp_home_searching.png" width="400px" />
+    <img src="./assets/images/pokeApp_detailOne.png" width="400px"  />
+</div>
 
-<br/>
 
-![PokeApp Home](./assets/images/pokeApp_home_searching.png)
 
-<br/>
 
-![PokeApp Home](./assets/images/pokeApp_detailOne.png)
 
 
