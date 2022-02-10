@@ -1,1 +1,1 @@
-export {default} from './useGeAllPokemon'
+export {default} from './useGetAllPokemon'

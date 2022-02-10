@@ -1,3 +1,5 @@
+import {handlers} from 'test/mocks/handlers'
+import {server} from 'test/mocks/server'
 import {customRenderHook} from 'test/test.utils'
 import pokeApi from '.'
 import {useGetPokemonByNameQuery, useGetAllPokemonQuery} from './hooks'

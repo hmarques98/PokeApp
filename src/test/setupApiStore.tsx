@@ -2,7 +2,6 @@
 import React, {Reducer} from 'react'
 import {
   AnyAction,
-  combineReducers,
   configureStore,
   EnhancedStore,
   Middleware,
@@ -10,6 +9,7 @@ import {
 } from '@reduxjs/toolkit'
 import {Provider} from 'react-redux'
 import {cleanup} from '@testing-library/react-native'
+import {RootState} from 'services/store'
 // import {setupListeners} from '@reduxjs/toolkit/query'
 
 export function withProvider(store: Store<any>) {
@@ -29,10 +29,10 @@ export function setupApiStore<
 >(api: A, extraReducers?: R): {api: any; store: EnhancedStore} {
   const getStore = () =>
     configureStore({
-      reducer: combineReducers({
+      reducer: {
         [api.reducerPath]: api.reducer,
         ...extraReducers,
-      }),
+      },
       middleware: gdm =>
         gdm({serializableCheck: false, immutableCheck: false}).concat(
           api.middleware,
@@ -46,7 +46,7 @@ export function setupApiStore<
       [K in keyof R]: ReturnType<R[K]>
     },
     AnyAction,
-    ReturnType<typeof getStore> extends EnhancedStore<any, any, infer M>
+    ReturnType<typeof getStore> extends EnhancedStore<RootState, any, infer M>
       ? M
       : never
   >

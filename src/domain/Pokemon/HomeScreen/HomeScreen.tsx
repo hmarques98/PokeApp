@@ -29,11 +29,15 @@ const HomeScreen = () => {
   const MemoizedHeaderComponent = useCallback(
     () => (
       <>
-        <SearchBar value={value} onChangeText={setValue} />
-        <Text style={styles.headerText}>Pokedex {data?.length}</Text>
+        <SearchBar
+          testID="home-screen-searchBar"
+          value={value}
+          onChangeText={setValue}
+        />
+        <Text style={styles.headerText}>Pokedex</Text>
       </>
     ),
-    [data?.length, value],
+    [value],
   )
   const navigation = useNavigation<HomeScreenNavigationProp>()
 

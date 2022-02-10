@@ -1,18 +1,20 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
+
 import {setupListeners} from '@reduxjs/toolkit/query'
 import pokeApi from 'services/pokeApi'
 import pokemon from './slices/pokemon'
 
 export const store = configureStore({
-  reducer: combineReducers({
+  reducer: {
     pokemon,
     [pokeApi.reducerPath]: pokeApi.reducer,
-  }),
+  },
   middleware: gdm =>
     gdm({serializableCheck: false, immutableCheck: false}).concat(
       pokeApi.middleware,
     ),
 })
+
 setupListeners(store.dispatch)
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

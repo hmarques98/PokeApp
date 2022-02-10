@@ -28,8 +28,6 @@ const useGetAllPokemon = (text?: string) => {
             }
           }),
         ).then(result => {
-          console.log({result})
-
           const nonUndefinedResult = result.filter(
             (value): value is IPokemon => value !== undefined,
           )
