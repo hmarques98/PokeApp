@@ -16,6 +16,10 @@ In this project it is consuming the poke Api. We are using React Native, Typescr
   - React Native Vector Icons
   
 
+##### Obs:
+
+There are scripts in ```package.json``` to build the project in command line, however, this project is only to practice and the commands require some setup, secrets keys, development team for apple and others things else. Then, is necessary to do something else to it work. 
+
 <br/>
 
 ![PokeApp Home](./assets/images/pokeApp_home.png.png)
