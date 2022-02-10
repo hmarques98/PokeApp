@@ -22,28 +22,28 @@ const HomeScreen = () => {
   const {data} = useGetAllPokemon(value)
 
   const MemoizedLoadingComponent = useCallback(
-    () => <Text style={styles.loadingText}>Loading</Text>,
-    [],
+    () => (
+      <Text style={styles.loadingText}>
+        {data?.length ? 'Loading' : 'Not found, my friend'}
+      </Text>
+    ),
+    [data],
   )
 
   const MemoizedHeaderComponent = useCallback(
-    () => (
-      <>
-        <SearchBar
-          testID="home-screen-searchBar"
-          value={value}
-          onChangeText={setValue}
-        />
-        <Text style={styles.headerText}>Pokedex</Text>
-      </>
-    ),
-    [value],
+    () => <Text style={styles.headerText}>PokeApp</Text>,
+    [],
   )
   const navigation = useNavigation<HomeScreenNavigationProp>()
 
   return (
     <BackgroundPokeBall>
       <View style={styles.container}>
+        <SearchBar
+          testID="home-screen-searchBar"
+          value={value}
+          onChangeText={setValue}
+        />
         <FlatList
           ListHeaderComponent={MemoizedHeaderComponent}
           ListEmptyComponent={MemoizedLoadingComponent}

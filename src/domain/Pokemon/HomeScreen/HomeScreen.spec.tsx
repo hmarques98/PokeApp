@@ -11,7 +11,7 @@ describe('HomeScreen', () => {
   test('SHOULD show the header', () => {
     const {queryByText} = makeSut()
 
-    expect(queryByText('Pokedex')).toBeTruthy()
+    expect(queryByText('PokeApp')).toBeTruthy()
   })
 
   test('SHOULD press on search bar and type', () => {

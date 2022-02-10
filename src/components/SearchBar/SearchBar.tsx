@@ -10,6 +10,7 @@ const SearchBar = ({...textInputProps}: SearchBarProps) => {
   const [textInputIsFocused, setTextInputIsFocused] = useState(false)
 
   const textInputRef = useRef<TextInput>(null)
+
   return (
     <View style={styles.container}>
       <TextInput
